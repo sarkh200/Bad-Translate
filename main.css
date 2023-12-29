@@ -1,0 +1,58 @@
+body {
+	width: fit-content;
+	height: fit-content;
+	min-width: 250px;
+}
+
+#translateInput {
+	resize: both;
+}
+
+.translatebutton {
+	display: flex;
+	justify-content: center;
+}
+
+.translatebutton>button {
+	background-color: white;
+	color: black;
+	border-color: black;
+	border-radius: 8px;
+}
+
+.translatebutton>button:hover {
+	background-color: lightgray;
+}
+
+.translatebutton>button:active {
+	background-color: gray;
+}
+
+.input {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.iterationInput {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.iterationCount {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.iterationCount>h3 {
+	font-family: monospace;
+	margin-left: 2px;
+}
+
+.iterationInput>input {
+	width: 15vw;
+	margin-left: 10px;
+}
