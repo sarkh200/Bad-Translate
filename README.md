@@ -1,2 +1,2 @@
-# Redirect-Shorts
-Changes the subdomain for youtube shorts from /shorts to /watch
+# Bad-Translate
+Chrome Extension that runs inputted text through Google Translate many times
