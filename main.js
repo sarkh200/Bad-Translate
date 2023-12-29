@@ -3,6 +3,7 @@ const badTranslated = ["la", "zh-TW", "zh-CN", "sa", "lo", "lus", "ko", "pl", "u
 
 let usedLanguages = languages;
 let lastLang = "auto";
+let useAuto = false;
 
 let iterations = 1;
 let iterationNumber = 0;
@@ -16,7 +17,13 @@ function changeIteration(to) {
 function translate(input, language) {
     chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
         let newUrl = `https://translate.google.com/?hl=en&sl=${lastLang}&tl=${language}&text=${encodeURI(input)}&op=translate`;
-        lastLang = language;
+        if (useAuto == false) {
+            lastLang = language;
+        }
+        else {
+            lastLang = "auto";
+        }
+
         chrome.tabs.update({ url: newUrl });
     });
 }
@@ -53,5 +60,6 @@ window.onload = function () {
     };
     document.getElementById("iterations").onchange = function () { iterations = document.getElementById("iterations").value; };
 
-    document.getElementById("useLessAccurate").onchange = function () { if (document.getElementById("useLessAccurate").checked) { usedLanguages = badTranslated; console.log("Bad"); } else { usedLanguages = languages; } };
+    document.getElementById("useLessAccurate").onchange = function () { if (document.getElementById("useLessAccurate").checked) { usedLanguages = badTranslated; } else { usedLanguages = languages; } };
+    document.getElementById("useAuto").onchange = function () { if (document.getElementById("useAuto").checked) { useAuto = true; } else { useAuto = false; } };
 }

@@ -35,7 +35,7 @@ body {
 	align-items: center;
 }
 
-.iterationInput {
+.optionDiv {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -52,7 +52,7 @@ body {
 	margin-left: 2px;
 }
 
-.iterationInput>input {
+.optionDiv>input {
 	width: 15vw;
 	margin-left: 10px;
 }
