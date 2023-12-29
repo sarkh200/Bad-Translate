@@ -1,5 +1,8 @@
 const languages = ["af", "ga", "sq", "it", "ar", "ja", "az", "kn", "eu", "ko", "bn", "la", "be", "lv", "bg", "lt", "ca", "mk", "zh-CN", "ms", "zh-TW", "mt", "hr", "no", "cs", "fa", "da", "pl", "nl", "pt", "en", "ro", "eo", "ru", "et", "sr", "tl", "sk", "fi", "sl", "fr", "es", "gl", "sw", "ka", "sv", "de", "ta", "el", "te", "gu", "th", "ht", "tr", "iw", "uk", "hi", "ur", "hu", "vi", "is", "cy", "id", "yi"]
-let lastLang = "en";
+const badTranslated = ["la", "zh-TW", "zh-CN", "sa", "lo", "lus", "ko", "pl", "uk", "yo"];
+
+let usedLanguages = languages;
+let lastLang = "auto";
 
 let iterations = 1;
 let iterationNumber = 0;
@@ -22,7 +25,7 @@ chrome.runtime.onMessage.addListener(
     function (sender) {
         changeIteration(iterationNumber + 1);
         if (iterationNumber < iterations) {
-            translate(sender.message, languages[Math.floor(Math.random() * languages.length)]);
+            translate(sender.message, usedLanguages[Math.floor(Math.random() * usedLanguages.length)]);
         }
         else if (iterationNumber == iterations) {
             translate(sender.message, "en");
@@ -44,8 +47,11 @@ window.onload = function () {
     document.getElementById("translateButton").onclick = function () {
         if (document.getElementById("input").value != '') {
             changeIteration(0);
-            translate(document.getElementById("input").value, languages[Math.floor(Math.random() * languages.length)])
+            lastLang = "auto";
+            translate(document.getElementById("input").value, usedLanguages[Math.floor(Math.random() * usedLanguages.length)])
         }
     };
     document.getElementById("iterations").onchange = function () { iterations = document.getElementById("iterations").value; };
+
+    document.getElementById("useLessAccurate").onchange = function () { if (document.getElementById("useLessAccurate").checked) { usedLanguages = badTranslated; console.log("Bad"); } else { usedLanguages = languages; } };
 }
