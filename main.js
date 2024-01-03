@@ -16,7 +16,7 @@ function changeIteration(to) {
 //https://translate.google.com/?hl=en&sl=auto&tl=InsertOutputLanguageHere&text=InsertInputTextHere&op=translate
 function translate(input, language) {
     chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-        let newUrl = `https://translate.google.com/?hl=en&sl=${lastLang}&tl=${language}&text=${encodeURI(input)}&op=translate`;
+        let newUrl = `https://translate.google.com/?hl=en&sl=${lastLang}&tl=${language}&text=${encodeURIComponent(input)}&op=translate`;
         if (useAuto == false) {
             lastLang = language;
         }
